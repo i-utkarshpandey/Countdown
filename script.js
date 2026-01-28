@@ -12,12 +12,8 @@ tapScreen.addEventListener("click", () => {
 });
 
 // =========================
-// Countdown logic
+// Countdown logic (IST)
 // =========================
-
-// Birthday: 28 February 2026
-const birthdayMonth = 1; // February (0-based index)
-const birthdayDay = 28;
 
 function calculateDaysLeft() {
   // Current time in UTC
@@ -47,8 +43,17 @@ function calculateDaysLeft() {
   }
 
   const oneDay = 1000 * 60 * 60 * 24;
-  return Math.floor((birthday.getTime() - todayIST) / oneDay);
+
+  // Human-style countdown (today counts as day 1)
+  return Math.max(
+    0,
+    Math.floor((birthday.getTime() - todayIST) / oneDay) - 1
+  );
 }
+
+// =========================
+// Update UI
+// =========================
 
 function updateCountdown() {
   const daysLeft = calculateDaysLeft();
@@ -63,5 +68,5 @@ function updateCountdown() {
 // Initial load
 updateCountdown();
 
-// Update once per day (safety)
+// Re-check every hour
 setInterval(updateCountdown, 1000 * 60 * 60);

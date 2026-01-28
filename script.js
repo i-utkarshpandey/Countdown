@@ -62,4 +62,7 @@ function updateCountdown() {
 }
 
 // Initial load
-updateCou
+updateCountdown();
+
+// Re-check every hour
+setInterval(updateCountdown, 1000 * 60 * 60);

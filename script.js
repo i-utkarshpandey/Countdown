@@ -54,11 +54,11 @@ function updateCountdown() {
   const daysLeft = calculateDaysLeft();
 
   if (daysLeft < 0) {
-    countdownText.innerHTML = "Happy Birthday Sweesthi ❤️🎉";
+    countdownText.innerHTML = "Happy Birthday Sweeshti ❤️🎉";
   } else if (daysLeft === 0) {
     countdownText.innerHTML = "0 days to go Sweesthi <3";
   } else {
-    countdownText.innerHTML = `${daysLeft} days to go Sweesthi <3`;
+    countdownText.innerHTML = `${daysLeft} days to go Sweeshti <3`;
   }
 }
 

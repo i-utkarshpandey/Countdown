@@ -12,7 +12,7 @@ tapScreen.addEventListener("click", () => {
 });
 
 // =========================
-// Countdown logic (IST, stops at Feb 27)
+// Countdown logic (IST, mathematically correct)
 // =========================
 
 function calculateDaysLeft() {
@@ -29,21 +29,22 @@ function calculateDaysLeft() {
     istNow.getUTCDate()
   );
 
-  // Countdown target: Feb 27 (IST)
-  let targetDate = new Date(
-    Date.UTC(istNow.getUTCFullYear(), 1, 27)
+  // Birthday: Feb 28 (IST)
+  let birthday = new Date(
+    Date.UTC(istNow.getUTCFullYear(), 1, 28)
   );
 
-  // If Feb 27 already passed, move to next year
-  if (todayIST > targetDate.getTime()) {
-    targetDate = new Date(
-      Date.UTC(istNow.getUTCFullYear() + 1, 1, 27)
+  // If birthday already passed this year, move to next year
+  if (todayIST > birthday.getTime()) {
+    birthday = new Date(
+      Date.UTC(istNow.getUTCFullYear() + 1, 1, 28)
     );
   }
 
   const oneDay = 1000 * 60 * 60 * 24;
 
-  return Math.floor((targetDate.getTime() - todayIST) / oneDay);
+  // Pure date difference (no human adjustment)
+  return Math.floor((birthday.getTime() - todayIST) / oneDay);
 }
 
 // =========================
@@ -53,17 +54,12 @@ function calculateDaysLeft() {
 function updateCountdown() {
   const daysLeft = calculateDaysLeft();
 
-  if (daysLeft < 0) {
+  if (daysLeft <= 0) {
     countdownText.innerHTML = "Happy Birthday Sweeshti ❤️🎉";
-  } else if (daysLeft === 0) {
-    countdownText.innerHTML = "0 days to go Sweeshti <3";
   } else {
     countdownText.innerHTML = `${daysLeft} days to go Sweeshti <3`;
   }
 }
 
 // Initial load
-updateCountdown();
-
-// Re-check every hour
-setInterval(updateCountdown, 1000 * 60 * 60);
+updateCou

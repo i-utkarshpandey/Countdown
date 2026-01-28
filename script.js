@@ -21,32 +21,30 @@ const birthdayDay = 28;
 
 function calculateDaysLeft() {
   const today = new Date();
-  const currentYear = today.getFullYear();
 
-  let birthday = new Date(currentYear, birthdayMonth, birthdayDay);
-
-  // If birthday already passed this year, move to next year
-  if (today > birthday) {
-    birthday = new Date(currentYear + 1, birthdayMonth, birthdayDay);
-  }
-
-  // Normalize times to midnight
-  const oneDay = 1000 * 60 * 60 * 24;
-  const todayMidnight = new Date(
+  // Use UTC to avoid timezone issues
+  const todayUTC = Date.UTC(
     today.getFullYear(),
     today.getMonth(),
     today.getDate()
   );
 
-  const birthdayMidnight = new Date(
+  let birthday = new Date(today.getFullYear(), 1, 28); // Feb 28
+
+  if (today > birthday) {
+    birthday = new Date(today.getFullYear() + 1, 1, 28);
+  }
+
+  const birthdayUTC = Date.UTC(
     birthday.getFullYear(),
     birthday.getMonth(),
     birthday.getDate()
   );
 
-  const diffTime = birthdayMidnight - todayMidnight;
-  return Math.round(diffTime / oneDay);
+  const oneDay = 1000 * 60 * 60 * 24;
+  return Math.floor((birthdayUTC - todayUTC) / oneDay);
 }
+
 
 function updateCountdown() {
   const daysLeft = calculateDaysLeft();

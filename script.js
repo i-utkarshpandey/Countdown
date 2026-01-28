@@ -56,7 +56,7 @@ function updateCountdown() {
   if (daysLeft < 0) {
     countdownText.innerHTML = "Happy Birthday Sweeshti ❤️🎉";
   } else if (daysLeft === 0) {
-    countdownText.innerHTML = "0 days to go Sweesthi <3";
+    countdownText.innerHTML = "0 days to go Sweeshti <3";
   } else {
     countdownText.innerHTML = `${daysLeft} days to go Sweeshti <3`;
   }
